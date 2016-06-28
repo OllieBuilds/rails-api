@@ -1,11 +1,17 @@
 class ExercisesController < ApplicationController
-  def add_exercise
-    @exercise = exercises.build(params)
 
-    if @exercise.save
-      render json: @exercise, status: :created, location: @exercise
+  def add
+    @exercise = Exercise.create(exercise_params)
+    if @exercise.valid?
+      render json: @exercise, status: :created
     else
-      render json: @exercise.errors, status: :unprocessable_entity
+      head :bad_request
     end
+  end
+
+private
+
+  def exercise_params
+    params.require(:exercise).permit(:exercise_name, :exercise_targeted_muscles)
   end
 end
