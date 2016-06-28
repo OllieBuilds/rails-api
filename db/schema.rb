@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327214720) do
+ActiveRecord::Schema.define(version: 20160628124557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "circuits", force: :cascade do |t|
+    t.string  "exercise_name",             null: false
+    t.integer "exercise_weight"
+    t.integer "exercise_reps"
+    t.string  "exercise_targeted_muscles", null: false
+    t.integer "user_id",                   null: false
+  end
+
+  add_index "circuits", ["exercise_name"], name: "index_circuits_on_exercise_name", using: :btree
 
   create_table "examples", force: :cascade do |t|
     t.text     "text",       null: false
@@ -24,6 +34,13 @@ ActiveRecord::Schema.define(version: 20160327214720) do
   end
 
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "exercise_name",             null: false
+    t.string "exercise_targeted_muscles", null: false
+  end
+
+  add_index "exercises", ["exercise_name"], name: "index_exercises_on_exercise_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
@@ -36,5 +53,6 @@ ActiveRecord::Schema.define(version: 20160327214720) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
+  add_foreign_key "circuits", "users"
   add_foreign_key "examples", "users"
 end
