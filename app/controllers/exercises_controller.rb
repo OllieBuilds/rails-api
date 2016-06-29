@@ -9,6 +9,12 @@ class ExercisesController < ApplicationController
     end
   end
 
+  def index
+    @exercises = Exercise.all
+
+    render json: @exercises
+  end
+
 private
 
   def exercise_params
