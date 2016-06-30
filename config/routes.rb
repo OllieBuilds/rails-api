@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post '/exercise' => 'exercises#add'
   get '/exercises' => 'exercises#index'
   get '/exercise/:exercise_name' => 'exercises#search'
+  delete '/exercise/:id' => 'exercises#destroy'
 end

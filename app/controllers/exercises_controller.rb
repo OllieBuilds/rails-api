@@ -1,5 +1,6 @@
+# Exercise Controller
 class ExercisesController < ApplicationController
-
+  # Post new exercise
   def add
     @exercise = Exercise.create(exercise_params)
     if @exercise.valid?
@@ -9,6 +10,7 @@ class ExercisesController < ApplicationController
     end
   end
 
+  # Get all exercises
   def index
     @exercises = Exercise.all
 
@@ -26,6 +28,12 @@ class ExercisesController < ApplicationController
     }
 
     render json: @exercises
+  end
+
+  # Delete exercise by id
+  def destroy
+    @exercise = Exercise.find(params[:id])
+    @exercise.delete
   end
 
   # private
