@@ -3,7 +3,7 @@ curl --include --request POST http://localhost:3000/exercise \
   --data '{
     "exercise":
       {
-        "exercise_name": "Push ups",
-        "exercise_targeted_muscles": "Chest and back"
+        "exercise_name": "Sit ups",
+        "exercise_targeted_muscles": "Abs"
       }
   }'

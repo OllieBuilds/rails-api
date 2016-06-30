@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   post '/exercise' => 'exercises#add'
   get '/exercises' => 'exercises#index'
+  get '/exercise/:exercise_name' => 'exercises#search'
 end
