@@ -1,6 +1,6 @@
 # Circuits Controller
 class CircuitsController < ProtectedController
-  before_action :authenticate, only: [:index, :create, :show]
+  before_action :authenticate, only: [:index, :create, :show, :destroy]
 
   # GET user's circuit
   def index
@@ -18,8 +18,15 @@ class CircuitsController < ProtectedController
     end
   end
 
+  # GET by id
   def show
     render json: Circuit.find(params[:id])
+  end
+
+  # DELETE exercise from circuits
+  def destroy
+    @circuit = Circuit.find(params[:id])
+    @circuit.delete
   end
 
   # private

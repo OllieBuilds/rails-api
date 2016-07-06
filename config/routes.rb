@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   post '/circuits' => 'circuits#create'
   get '/circuits' => 'circuits#index'
   get '/circuits/:id' => 'circuits#show'
+  delete '/circuits/:id' => 'circuits#destroy'
 end
