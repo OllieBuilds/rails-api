@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete '/exercise/:id' => 'exercises#destroy'
   post '/circuits' => 'circuits#create'
   get '/circuits' => 'circuits#index'
+  get '/circuits/:id' => 'circuits#show'
 end

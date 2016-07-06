@@ -1,6 +1,6 @@
 # Circuits Controller
 class CircuitsController < ProtectedController
-  before_action :authenticate, only: [:index, :create]
+  before_action :authenticate, only: [:index, :create, :show]
 
   # GET user's circuit
   def index
@@ -16,6 +16,10 @@ class CircuitsController < ProtectedController
     else
       render json: @circuit.errors, status: :unprocessable_entity
     end
+  end
+
+  def show
+    render json: Circuit.find(params[:id])
   end
 
   # private
