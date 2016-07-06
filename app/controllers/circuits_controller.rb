@@ -11,7 +11,6 @@ class CircuitsController < ProtectedController
   # POST new circuit
   def create
     @circuit = current_user.circuits.build(circuit_params)
-
     if @circuit.save
       render json: @circuit, status: :created, location: @circuit
     else
@@ -22,11 +21,17 @@ class CircuitsController < ProtectedController
   # private
   private
 
-  def circuit_params
-    params.require(:current_user).permit(:exercise_name,
-                                         :exercise_targeted_muscles,
-                                         :exercise_weight,
-                                         :exercise_reps
-                                        )
+  def set_circuit
+    @circuit = current_user.circuits.find(params[:id])
   end
+
+  def circuit_params
+    params.require(:circuit).permit(:exercise_name,
+                                    :exercise_targeted_muscles,
+                                    :exercise_weight,
+                                    :exercise_reps
+                                   )
+  end
+
+  private :set_circuit, :circuit_params
 end

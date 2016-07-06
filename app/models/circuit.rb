@@ -2,5 +2,5 @@
 class Circuit < ActiveRecord::Base
   belongs_to :user
   has_many :exercises
-  validate :user, presence: true
+  validates :user, presence: true
 end
